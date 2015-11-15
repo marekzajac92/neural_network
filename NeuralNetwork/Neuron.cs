@@ -20,6 +20,16 @@ namespace NeuralNetwork
             throw new NotImplementedException();
         }
 
+        public float GetInputValue(int i)
+        {
+            throw new NotImplementedException();
+        }
+
+        public float GetWeight(int i)
+        {
+            throw new NotImplementedException();
+        }
+
         public float GetMaxValue()
         {
             throw new NotImplementedException();
