@@ -41,14 +41,21 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActivationFunction.cs" />
     <Compile Include="ActivationFunctions\LogisticActivationFunction.cs" />
     <Compile Include="Connection.cs" />
     <Compile Include="Interfaces\IActivationFunction.cs" />
+    <Compile Include="Interfaces\IActivationFunctionFactory.cs" />
+    <Compile Include="Interfaces\ILayerFactory.cs" />
+    <Compile Include="Interfaces\INeuronFactory.cs" />
     <Compile Include="Interfaces\IScalingMethod.cs" />
+    <Compile Include="Interfaces\IScalingMethodFactory.cs" />
     <Compile Include="Layer.cs" />
+    <Compile Include="LayerType.cs" />
     <Compile Include="Network.cs" />
     <Compile Include="Neuron.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScalingMethod.cs" />
     <Compile Include="ScalingMethods\AvgScalingMethod.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

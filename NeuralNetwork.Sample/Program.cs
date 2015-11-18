@@ -22,31 +22,33 @@ namespace NeuralNetwork.Sample
             neurons[1].SetWeight(0, 0.15f);
             neurons[1].SetWeight(1, 0.55f);
 
-            var connections = new List<Connection>();
-            connections.Add(new Connection()
+            var connections = new List<Connection>
             {
-                Value = 0,
-                Neuron = 0,
-                NeuronInput = 0
-            });
-            connections.Add(new Connection()
-            {
-                Value = 1,
-                Neuron = 0,
-                NeuronInput = 1
-            });
-            connections.Add(new Connection()
-            {
-                Value = 0,
-                Neuron = 1,
-                NeuronInput = 0
-            });
-            connections.Add(new Connection()
-            {
-                Value = 1,
-                Neuron = 1,
-                NeuronInput = 1
-            });
+                new Connection()
+                {
+                    Value = 0,
+                    Neuron = 0,
+                    NeuronInput = 0
+                },
+                new Connection()
+                {
+                    Value = 1,
+                    Neuron = 0,
+                    NeuronInput = 1
+                },
+                new Connection()
+                {
+                    Value = 0,
+                    Neuron = 1,
+                    NeuronInput = 0
+                },
+                new Connection()
+                {
+                    Value = 1,
+                    Neuron = 1,
+                    NeuronInput = 1
+                }
+            };
             var layers = new[] {new Layer(2, neurons, connections, scalingMethod)};
 
             var network = new Network(layers);
