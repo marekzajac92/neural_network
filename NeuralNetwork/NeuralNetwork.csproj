@@ -41,6 +41,7 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActivationFunctions\LogisticActivationFunction.cs" />
     <Compile Include="Connection.cs" />
     <Compile Include="Interfaces\IActivationFunction.cs" />
     <Compile Include="Interfaces\IScalingMethod.cs" />
