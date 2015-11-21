@@ -44,8 +44,12 @@
     <Compile Include="ActivationFunction.cs" />
     <Compile Include="ActivationFunctions\LogisticActivationFunction.cs" />
     <Compile Include="Connection.cs" />
+    <Compile Include="Factories\InputConnectionFactory.cs" />
+    <Compile Include="Factories\MlpConnectionFactory.cs" />
+    <Compile Include="Factories\NeuronFactory.cs" />
     <Compile Include="Interfaces\IActivationFunction.cs" />
     <Compile Include="Interfaces\IActivationFunctionFactory.cs" />
+    <Compile Include="Interfaces\IConnectionFactory.cs" />
     <Compile Include="Interfaces\ILayerFactory.cs" />
     <Compile Include="Interfaces\INeuronFactory.cs" />
     <Compile Include="Interfaces\IScalingMethod.cs" />

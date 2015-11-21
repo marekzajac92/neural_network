@@ -10,15 +10,13 @@ namespace NeuralNetwork
         private readonly int _numberOfInputs;
         private readonly Neuron[] _neurons;
         private readonly IEnumerable<Connection> _connections;
-        private readonly IScalingMethod _scalingMethod;
 
-        public Layer(int numberOfInputs, Neuron[] neurons, IEnumerable<Connection> connections, IScalingMethod scalingMethod)
+        public Layer(int numberOfInputs, Neuron[] neurons, IEnumerable<Connection> connections)
         {
             _numberOfInputs = numberOfInputs;
             _neurons = neurons;
 
             _connections = connections;
-            _scalingMethod = scalingMethod;
         }
 
         public void SetInput(float[] values)
@@ -32,7 +30,7 @@ namespace NeuralNetwork
 
                 foreach (var connection in connections)
                 {
-                    _neurons[connection.Neuron].SetInputValue(connection.NeuronInput, _scalingMethod.Scale(values[i]));
+                    _neurons[connection.Neuron].SetInputValue(connection.NeuronInput, values[i]);
                 }
             }
         }

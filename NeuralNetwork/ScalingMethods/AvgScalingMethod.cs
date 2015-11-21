@@ -16,7 +16,8 @@ namespace NeuralNetwork.ScalingMethods
 
         public float Scale(float x)
         {
-            return x/((_b - _a)/2.0f);
+            return x;
+             //return x/((_b - _a)/2.0f);
         }
     }
 }

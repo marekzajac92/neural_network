@@ -13,9 +13,12 @@ namespace NeuralNetwork.ActivationFunctions
             var oldMin = _a*weightsSum;
             var oldMax = _b*weightsSum;
 
-            var p = ((x - oldMin) - (1.0f - 0.0f))/(oldMax - oldMin);
+            var p = (((6.0f - (-6.0f)) * (x - oldMin)) / (oldMax - oldMin)) - 5.0f;
 
-            var value = 1.0f/(1.0f + Math.Exp(-0.5f*p));
+            if (p < -45.0f) return 0.0f;
+            if (p > 45.0f) return 1.0f;
+
+            var value = 1.0f/(1.0f + Math.Exp(1.0f-p));
 
             return (float)value;
         }

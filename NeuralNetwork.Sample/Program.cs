@@ -1,6 +1,8 @@
-﻿using NeuralNetwork.ActivationFunctions;
+﻿using System;
+using NeuralNetwork.ActivationFunctions;
 using NeuralNetwork.ScalingMethods;
 using System.Collections.Generic;
+using NeuralNetwork.Factories;
 
 namespace NeuralNetwork.Sample
 {
@@ -8,54 +10,50 @@ namespace NeuralNetwork.Sample
     {
         static void Main(string[] args)
         {
-            var activationFunction = new LogisticActivationFunction();
-            activationFunction.SetInputRange(0.0f, 255.0f * 2);
             var scalingMethod = new AvgScalingMethod();
             scalingMethod.SetInputRange(0.0f, 255.0f);
-            var neurons = new[]
-            {
-                new Neuron(2, activationFunction),
-                new Neuron(2, activationFunction)
-            };
-            neurons[0].SetWeight(0, 0.5f);
-            neurons[0].SetWeight(1, 0.25f);
-            neurons[1].SetWeight(0, 0.15f);
-            neurons[1].SetWeight(1, 0.55f);
+            
+            var neuronFactory = new NeuronFactory();
+            var connectionFactory = new MlpConnectionFactory();
+            var inputConnectionFactory = new InputConnectionFactory();
+            var neurons = neuronFactory.CreateNeurons(2, 1, 0.0f, 255.0f, new LogisticActivationFunction());
 
-            var connections = new List<Connection>
+            for (int i = 0; i < neurons.Length; i++)
             {
-                new Connection()
-                {
-                    Value = 0,
-                    Neuron = 0,
-                    NeuronInput = 0
-                },
-                new Connection()
-                {
-                    Value = 1,
-                    Neuron = 0,
-                    NeuronInput = 1
-                },
-                new Connection()
-                {
-                    Value = 0,
-                    Neuron = 1,
-                    NeuronInput = 0
-                },
-                new Connection()
-                {
-                    Value = 1,
-                    Neuron = 1,
-                    NeuronInput = 1
-                }
+                Console.WriteLine("[{1}] - {0}", neurons[i].GetWeight(0), i);
+            }
+
+            var neurons2 = neuronFactory.CreateNeurons(2, 2, 0.0f, 1.0f, new LogisticActivationFunction());
+            var connections = inputConnectionFactory.CreateConnections(2, 2, 1);
+            var connections2 = connectionFactory.CreateConnections(2, 2, 2);
+            var layers = new[]
+            {
+                new Layer(2, neurons, connections),
+                new Layer(2, neurons2, connections2), 
             };
-            var layers = new[] {new Layer(2, neurons, connections, scalingMethod)};
+
 
             var network = new Network(layers);
 
-            network.SetInput(new [] { 22.0f, 145.0f});
+            var random = new Random();
+            var inputs = new float[2];
+            Console.WriteLine("Inputs");
+            for (var i = 0; i < inputs.Length; i++)
+            {
+                inputs[i] = (float)(random.NextDouble() * 120.0f + 130.0f);
+                Console.WriteLine("[{1}] - {0}", inputs[i], i);
+            }
+
+            network.SetInput(inputs);
 
             var output = network.GetOutput();
+
+            foreach (var o in output)
+            {
+                Console.WriteLine("{0}", o);
+            }
+
+            Console.ReadLine();
         }
     }
 }
